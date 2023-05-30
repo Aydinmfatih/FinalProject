@@ -29,12 +29,19 @@ namespace DataAccess.Concrete.InMemory
         public void Delete(Product product)
         {
             Product productToDelete = _products.SingleOrDefault(p=>p.ProductId == product.ProductId);
-            _products.Remove(productToDelete); ;
-        }
+            _products.Remove(productToDelete);
 
+           
+        }
+         
         public List<Product> GetAll()
         {
             return _products;
+        }
+
+        public List<Product> GetAllByCategory(int categoryId)
+        {
+           return  _products.Where(p=>p.CategoryId== categoryId).ToList();
         }
 
         public void Update(Product product)

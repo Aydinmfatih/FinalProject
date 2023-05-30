@@ -17,6 +17,7 @@ namespace DataAccess.Abstract
 
         void Delete(Product product);
 
+        List<Product> GetAllByCategory(int categoryId);
     }
 }
  
