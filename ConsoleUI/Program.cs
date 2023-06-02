@@ -3,12 +3,15 @@ using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 
 //ProductTest();
-CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+//CategoryTest();
 
-foreach (var category in categoryManager.GetAll())
-{
-    Console.WriteLine(category.CategoryName);
-}
+
+
+
+
+
+
+
 
 
 
@@ -23,3 +26,12 @@ static void ProductTest()
     }
 }
 
+static void CategoryTest()
+{
+    CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+
+    foreach (var category in categoryManager.GetAll())
+    {
+        Console.WriteLine(category.CategoryName);
+    }
+}
