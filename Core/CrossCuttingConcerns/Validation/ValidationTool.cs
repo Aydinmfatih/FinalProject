@@ -14,7 +14,7 @@ namespace Core.CrossCuttingConcerns.Validation
         {
             var context = new ValidationContext<object>(entity);
             var result = validator.Validate(context);
-            if (!result.IsValid)
+            if (!result.IsValid) 
             {
                 throw new FluentValidation.ValidationException(result.Errors);
             }
