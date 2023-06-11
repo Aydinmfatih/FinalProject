@@ -2,7 +2,7 @@
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 
-ProductTest();
+//ProductTest();
 //CategoryTest();
 
 
@@ -15,31 +15,31 @@ ProductTest();
 
 
 
-static void ProductTest()
-{
-    ProductManager productManager = new ProductManager(new EfProductDal());
+//static void ProductTest()
+//{
+//    ProductManager productManager = new ProductManager(new EfProductDal(),new ProductManager());
 
-    var result = productManager.GetProductDetails();
+//    var result = productManager.GetProductDetails();
 
-    if (result.Success==true )
-    {
-        foreach (var item in result.Data)
-        {
-            Console.WriteLine(item.ProductName);
-        }
-    }
-    else
-    {
-        Console.WriteLine(result.Message);
-    }
-}
+//    if (result.Success==true )
+//    {
+//        foreach (var item in result.Data)
+//        {
+//            Console.WriteLine(item.ProductName);
+//        }
+//    }
+//    else
+//    {
+//        Console.WriteLine(result.Message);
+//    }
+//}
 
-static void CategoryTest()
-{
-    CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+//static void CategoryTest()
+//{
+//    CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
 
-    foreach (var category in categoryManager.GetAll())
-    {
-        Console.WriteLine(category.CategoryName);
-    }
-}
+//    foreach (var category in categoryManager.GetAll().Data)
+//    {
+//        Console.WriteLine(category.CategoryName);
+//    }
+//}
