@@ -28,8 +28,10 @@ namespace Business.Concrete
 
         public IResult Add(Product product)
         {
-            IResult result = BusinessRules.Run(CheckIfProductCountOfCategoryCorrect(product.CategoryId), CheckIfProductNameExist(product.ProductName),CheckIfCategoryLimitExceded());
-
+           IResult result = BusinessRules.Run(CheckIfProductCountOfCategoryCorrect(product.CategoryId), CheckIfProductNameExist(product.ProductName),CheckIfCategoryLimitExceded());
+            
+            
+            
             if (result!=null)
             {
                 return result;
