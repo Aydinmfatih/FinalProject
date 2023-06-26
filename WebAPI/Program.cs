@@ -5,6 +5,7 @@ using Business.Concrete;
 using Business.DependencyResolver.Autofac;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using Core.Utilities.Security.JWT;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,5 +44,22 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidIssuer = tokenOptions.Issuer,
+            ValidAudience = tokenOptions.Audience,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
+        };
+    });
 
 app.Run();

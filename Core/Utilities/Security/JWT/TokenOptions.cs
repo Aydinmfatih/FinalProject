@@ -1,4 +1,8 @@
-﻿public partial class JwtHelper
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Core.Utilities.Security.Jwt
 {
     public class TokenOptions
     {

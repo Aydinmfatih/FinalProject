@@ -6,8 +6,10 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Collections.Generic;
+using Core.Extensions;
+using Core.Utilities.Security.Jwt;
 
-public partial class JwtHelper : ITokenHelper
+public  class JwtHelper : ITokenHelper
 {
     public IConfiguration Configuration { get; }
     private TokenOptions _tokenOptions;
