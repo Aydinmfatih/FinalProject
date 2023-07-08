@@ -29,18 +29,17 @@ namespace Business.Concrete
 
         public IResult Add(Product product)
         {
-           var result = BusinessRules.Run(CheckIfProductCountOfCategoryCorrect(product.CategoryId), CheckIfProductNameExist(product.ProductName),CheckIfCategoryLimitExceded());
-            
-            
-            
-            if (result!=null)
+            var result = BusinessRules.Run(CheckIfProductCountOfCategoryCorrect(product.CategoryId), CheckIfProductNameExist(product.ProductName), CheckIfCategoryLimitExceded());
+
+
+            if (result != null)
             {
                 return result;
             }
             _productDal.Add(product);
             return new SuccessResult();
 
-           
+
         }
 
         public IDataResult<List<Product>> GetAll()
@@ -89,7 +88,7 @@ namespace Business.Concrete
             }
             return new SuccessResult();
         }
-          
+
         private IResult CheckIfProductNameExist(string productName)
         {
             var result = _productDal.GetAll(p => p.ProductName == productName).Any();
