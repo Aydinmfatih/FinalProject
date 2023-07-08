@@ -12,6 +12,8 @@ using Core.Utilities.Security.Encryption;
 using Autofac.Core;
 using Core.Utilities.IoC;
 using Microsoft.IdentityModel.Tokens;
+using Core.Extensions;
+using Core.DependencyResolvers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +29,7 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
 
 
 builder.Services.AddControllers();
+
 
 var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -44,7 +47,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
         };
     });
-ServiceTool.Create(builder.Services);
+builder.Services.AddDependencyResolvers(new ICoreModule[]
+{
+    new CoreModule()
+}); 
 //builder.Services.AddSingleton<IProductService,ProductManager>();
 //builder.Services.AddSingleton<IProductDal, EfProductDal>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
